@@ -1,15 +1,22 @@
 <!DOCTYPE html>
-<html ng-app>
+<html ng-app="app">
 <head>
   <title>Companies Manager</title>
 </head>
 <body>
-  <h1>Hello company!</h1>
+  <script type="text/ng-template" id="home.html">
+    <h1>Hello company!</h1>
+  </script>
+
+  <script type="text/ng-template" id="company_index.html">
+    <h1>Index</h1>
+  </script>
 
   <!--SCRIPTS LOAD-->
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.3/angular.min.js"></script>
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.3/angular-resource.min.js"></script>
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.3/angular-route.min.js"></script>
+  <script type="text/javascript" src="js/_js/app.js"></script>
   <!--END SCRIPTS-->
 </body>
 </html>
