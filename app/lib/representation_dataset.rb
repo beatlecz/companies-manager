@@ -6,7 +6,7 @@ module Representation
     module DatasetMethods
 
       def as(template, opts={})
-        map! do |item|
+        all.map! do |item|
           item.as template, opts
         end
       end

@@ -26,9 +26,14 @@ class App < Sinatra::Base
                         :max_connections => 30
   end
 
+  # Load models
   require 'models/company'
   require 'models/owner'
   require 'models/director'
   require 'models/data_version'
+
+  # Load representers
+  require 'representers/company_index_representer'
+  require 'representers/company_detail_representer'
 
 end
