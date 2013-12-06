@@ -12,6 +12,9 @@ Sequel.migration do
       String      :phone
 
       String      :uuid,    null: false, fixed: true, size: 36
+
+      DateTime    :created_at, null: false
+      DateTime    :updated_at, null: false
     end
 
     create_table :owners do
@@ -21,6 +24,9 @@ Sequel.migration do
       File        :attachment
 
       String      :uuid,    null: false, fixed: true, size: 36
+
+      DateTime    :created_at, null: false
+      DateTime    :updated_at, null: false
     end
 
     create_table :directors do
@@ -30,12 +36,17 @@ Sequel.migration do
       File        :attachment
 
       String      :uuid,    null: false, fixed: true, size: 36
+
+      DateTime    :created_at, null: false
+      DateTime    :updated_at, null: false
     end
 
     create_table :data_versions do
       primary_key :id
       String      :uuid,    null: false, fixed: true, size: 36
       json        :data,    null: false
+
+      DateTime    :created_at, null: false
     end
 
   end
