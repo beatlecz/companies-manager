@@ -1,4 +1,5 @@
 class Company < Sequel::Model
+  include Representation::Dataset
 
   # Plugins
   plugin :timestamps,  :create =>  :created_at,

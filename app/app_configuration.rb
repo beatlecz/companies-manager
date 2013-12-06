@@ -1,6 +1,8 @@
 require 'sinatra/base'
 require 'oj'
 require 'sequel'
+require 'lib/representation'
+require 'lib/representation_dataset'
 
 
 class App < Sinatra::Base
@@ -24,6 +26,9 @@ class App < Sinatra::Base
                         :max_connections => 30
   end
 
-
+  require 'models/company'
+  require 'models/owner'
+  require 'models/director'
+  require 'models/data_version'
 
 end
