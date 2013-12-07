@@ -4,7 +4,6 @@ require 'sequel'
 require 'lib/representation'
 require 'lib/representation_dataset'
 
-
 class App < Sinatra::Base
 
   configure do
@@ -35,5 +34,15 @@ class App < Sinatra::Base
   # Load representers
   require 'representers/company_index_representer'
   require 'representers/company_detail_representer'
+
+  # Load helpers
+  require 'helpers/json_respond'
+  require 'helpers/http_helper'
+  require 'helpers/api_helper'
+
+  # Include helpers
+  helpers JSONRespond
+  helpers HttpHelper
+  helpers ApiHelper
 
 end

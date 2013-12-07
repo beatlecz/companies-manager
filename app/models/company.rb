@@ -10,4 +10,9 @@ class Company < Sequel::Model
   one_to_many :directors
   one_to_many :owners
 
+  def before_create
+    super
+    self.uuid = SecureRandom.uuid
+  end
+
 end

@@ -8,4 +8,12 @@ class App < Sinatra::Base
     erb :app
   end
 
+  get '/companies' do
+    json OK, Company.as(:index)
+  end
+
+  #post '/companies' do
+  #
+  #end
+
 end
