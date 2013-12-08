@@ -8,6 +8,7 @@ gem 'sinatra'
 # Interactive shell
 gem 'racksh'
 gem 'rake', '= 10.1.0'
+gem 'awesome_print'
 
 # Database
 gem 'pg'

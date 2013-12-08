@@ -4,6 +4,9 @@ require 'sequel'
 require 'lib/representation'
 require 'lib/representation_dataset'
 
+# General objects extensions
+require 'extensions/string'
+
 class App < Sinatra::Base
 
   configure do
@@ -16,6 +19,7 @@ class App < Sinatra::Base
                         :encoding => 'utf-8',
                         :logger => Logger.new($stdout),
                         :max_connections => 30
+    require 'ap'
   end
 
   configure :test do
@@ -23,6 +27,7 @@ class App < Sinatra::Base
                         :encoding => 'utf-8',
                         :logger => Logger.new($stdout),
                         :max_connections => 30
+    require 'ap'
   end
 
   configure :production do
