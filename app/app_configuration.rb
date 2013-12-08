@@ -26,7 +26,7 @@ class App < Sinatra::Base
   configure :test do
     DB = Sequel.connect 'postgres://localhost/companies_manager_test',
                         :encoding => 'utf-8',
-                        :logger => Logger.new($stdout),
+                        :logger => nil, #Logger.new($stdout),
                         :max_connections => 30
     require 'ap'
   end

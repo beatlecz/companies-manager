@@ -13,4 +13,12 @@ class Hash
     omit
   end
 
+  def except(*keys)
+    h = self.dup
+    keys.each do |key|
+      h.delete key
+    end
+    h
+  end
+
 end
