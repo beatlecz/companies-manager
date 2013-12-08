@@ -1,5 +1,6 @@
 require 'rack/test'
 require 'app_spec_helper'
+require 'set'
 
 # Setup Bundler & Rack in test env
 Bundler.setup :default, :test

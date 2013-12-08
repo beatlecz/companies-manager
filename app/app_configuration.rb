@@ -6,6 +6,7 @@ require 'lib/representation_dataset'
 
 # General objects extensions
 require 'extensions/string'
+require 'extensions/hash'
 
 class App < Sinatra::Base
 
