@@ -18,6 +18,13 @@ class App < Sinatra::Base
                         :max_connections => 30
   end
 
+  configure :test do
+    DB = Sequel.connect 'postgres://localhost/companies_manager_test',
+                        :encoding => 'utf-8',
+                        :logger => Logger.new($stdout),
+                        :max_connections => 30
+  end
+
   configure :production do
     DB = Sequel.connect ENV['DATABASE_URL'],
                         :encoding => 'utf-8',

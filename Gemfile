@@ -7,6 +7,7 @@ gem 'sinatra'
 
 # Interactive shell
 gem 'racksh'
+gem 'rake', '= 10.1.0'
 
 # Database
 gem 'pg'
