@@ -9,6 +9,7 @@ require 'lib/data_versioning'
 # General objects extensions
 require 'extensions/string'
 require 'extensions/hash'
+require 'extensions/sequel'
 
 class App < Sinatra::Base
 
@@ -30,6 +31,7 @@ class App < Sinatra::Base
                         :encoding => 'utf-8',
                         :logger => Logger.new($stdout),
                         :max_connections => 30
+    DB.extension :pg_json
     require 'ap'
   end
 
@@ -38,6 +40,7 @@ class App < Sinatra::Base
                         :encoding => 'utf-8',
                         :logger => nil, #Logger.new($stdout),
                         :max_connections => 30
+    DB.extension :pg_json
     require 'ap'
   end
 
@@ -46,6 +49,7 @@ class App < Sinatra::Base
                         :encoding => 'utf-8',
                         :logger => Logger.new($stdout),
                         :max_connections => 30
+    DB.extension :pg_json
   end
 
   # Load models

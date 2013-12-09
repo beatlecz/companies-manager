@@ -19,6 +19,7 @@ class App < Sinatra::Base
   end
 
   post '/companies' do
+    ap request.env
     company = Company.create params.slice(*Company.updatable_columns)
 
     json OK, company.as(:detail)
@@ -82,7 +83,7 @@ class App < Sinatra::Base
                                 content_type: params['file'][:type],
                                 data: params['file'][:tempfile].read
 
-    json OK, file.as(:url, host: request.host)
+    json OK, file.as(:url)
   end
 
   # Download file
