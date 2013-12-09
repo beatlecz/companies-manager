@@ -54,3 +54,30 @@ curl -i \
   http://localhost:3000/companies
 ```
 
+### GET owner detail
+```
+curl -i \
+  http://localhost:3000/companies/1/owners/1
+```
+
+### POST update owner
+```
+curl -i \
+  -H "Content-Type: application/json" \
+  -X POST -d '{"name":"update owner"}' \
+  http://localhost:3000/companies/1/owners/1
+```
+
+### DELETE owner
+```
+curl -i \
+  -X DELETE \
+  http://localhost:3000/companies/1/owners/1
+```
+
+### POST attachement for owner
+```
+curl -i \
+  --form "file=@filename.txt" \
+  http://localhost:3000/companies/1/owners/1/attachment
+```
