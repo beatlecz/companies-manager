@@ -1,10 +1,17 @@
 CompaniesCtrl = ($scope, Api) ->
-  $scope.companies = Api.companies.query()
+
+  loadData = ->
+    $scope.companies = Api.companies.query()
+  $scope.delete = (c) ->
+    c.$delete id: c.id, ->
+      loadData()
+
+  loadData()
 
 CompanyCtrl = ($scope, Api, $routeParams,$log) ->
   if $routeParams.id == 'new'
     $scope.editing = true
-    $scope.title = 'New company'
+    $scope.isNew = true
     $scope.company = new Api.companies()
   else
     $scope.editing = false

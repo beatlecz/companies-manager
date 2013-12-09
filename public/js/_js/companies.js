@@ -2,13 +2,24 @@
 var CompaniesCtrl, CompanyCtrl;
 
 CompaniesCtrl = function($scope, Api) {
-  return $scope.companies = Api.companies.query();
+  var loadData;
+  loadData = function() {
+    return $scope.companies = Api.companies.query();
+  };
+  $scope["delete"] = function(c) {
+    return c.$delete({
+      id: c.id
+    }, function() {
+      return loadData();
+    });
+  };
+  return loadData();
 };
 
 CompanyCtrl = function($scope, Api, $routeParams, $log) {
   if ($routeParams.id === 'new') {
     $scope.editing = true;
-    $scope.title = 'New company';
+    $scope.isNew = true;
     $scope.company = new Api.companies();
   } else {
     $scope.editing = false;
