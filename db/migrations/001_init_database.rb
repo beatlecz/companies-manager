@@ -20,25 +20,28 @@ Sequel.migration do
     create_table :owners do
       primary_key :id
       foreign_key :company_id, :companies, on_delete: :cascade
-      String      :name,    null: false
-      File        :attachment
 
-      String      :uuid,    null: false, fixed: true, size: 36
+      String      :name,        null: false
 
-      DateTime    :created_at, null: false
-      DateTime    :updated_at, null: false
+      Bool        :is_director, null: false, default: false
+
+      String      :uuid,        null: false, fixed: true, size: 36
+
+      DateTime    :created_at,  null: false
+      DateTime    :updated_at,  null: false
     end
 
-    create_table :directors do
+    create_table :attachments do
       primary_key :id
-      foreign_key :company_id, :companies, on_delete: :cascade
-      String      :name,    null: false
-      File        :attachment
+      foreign_key :owner_id, :owners, null: false, on_delete: :cascade
 
-      String      :uuid,    null: false, fixed: true, size: 36
+      String      :name
+      String      :content_type
+      String      :size
+      File        :data,  null: false
 
-      DateTime    :created_at, null: false
-      DateTime    :updated_at, null: false
+      DateTime    :created_at,  null: false
+      DateTime    :updated_at,  null: false
     end
 
     create_table :data_versions do

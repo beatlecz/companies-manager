@@ -9,6 +9,7 @@ class Owner < Sequel::Model
 
   # Associations
   many_to_one :company
+  one_to_many :attachments
 
   def before_create
     super

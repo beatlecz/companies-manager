@@ -50,7 +50,7 @@ class App < Sinatra::Base
   # Load models
   require 'models/company'
   require 'models/owner'
-  require 'models/director'
+  require 'models/attachment'
   require 'models/data_version'
 
   # Load representers
