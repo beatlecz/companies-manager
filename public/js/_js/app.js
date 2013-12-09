@@ -6,16 +6,14 @@ app = angular.module('app', ['ngResource', 'ngRoute', 'angularFileUpload']);
 
 app.config([
   '$routeProvider', function($routeProvider) {
-    return $routeProvider.when('/', {
-      templateUrl: 'js/templates/home.html'
-    }).when('/companies', {
+    return $routeProvider.when('/companies', {
       templateUrl: 'js/templates/companies_index.html',
       controller: CompaniesCtrl
     }).when('/companies/:company_id', {
       templateUrl: 'js/templates/companies_detail.html',
       controller: CompanyCtrl
     }).otherwise({
-      redirectTo: '/'
+      redirectTo: '/companies'
     });
   }
 ]);
@@ -30,10 +28,6 @@ api = function($resource) {
       company_id: '@company_id'
     }),
     directors: $resource('/companies/:company_id/directors/:owner_id', {
-      owner_id: '@id',
-      company_id: '@company_id'
-    }),
-    attachments: $resource('/companies/:company_id/directors/:owner_id/attachments', {
       owner_id: '@id',
       company_id: '@company_id'
     })

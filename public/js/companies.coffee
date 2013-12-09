@@ -3,13 +3,13 @@ CompaniesCtrl = ($scope, Api) ->
   $scope.loadData = ->
     $scope.companies = Api.companies.query()
   $scope.delete = (c) ->
-    c.$delete id: c.id, ->
+    c.$delete ->
       $scope.loadData()
 
   $scope.loadData()
 
-CompanyCtrl = ($scope, Api, $routeParams) ->
-  if $routeParams.id == 'new'
+CompanyCtrl = ($scope, Api, $routeParams, $location) ->
+  if $routeParams.company_id == 'new'
     $scope.editing = true
     $scope.isNew = true
     $scope.company = new Api.companies()
@@ -21,5 +21,5 @@ CompanyCtrl = ($scope, Api, $routeParams) ->
     $scope.editing = !$scope.editing
 
   $scope.save = (c) ->
-    c.$save id: c.id, ->
-      $scope.editing = false
+    c.$save ->
+      $location.path '/companies/' + c.id

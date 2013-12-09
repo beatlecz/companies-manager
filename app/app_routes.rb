@@ -46,7 +46,7 @@ class App < Sinatra::Base
   ########
 
   get '/companies/:company_id/owners' do
-    json OK, company.owners_dataset.as(:detail)
+    json OK, company.owners_dataset.eager(:attachments).as(:detail)
   end
 
   post '/companies/:company_id/owners' do
@@ -76,13 +76,20 @@ class App < Sinatra::Base
   # Attachments
   #############
 
-  post '/companies/:company_id/owners/:owner_id/attachments' do
-    owner.add_attachment name: params['file'][:filename],
-                         size: params['file'][:tempfile].size,
-                         content_type: params['file'][:type],
-                         data: params['file'][:tempfile].read
-    ap Attachment.first
-    json OK
+  post '/companies/:company_id/owners/:owner_id/attachment' do
+    file = owner.add_attachment name: params['file'][:filename],
+                                size: params['file'][:tempfile].size,
+                                content_type: params['file'][:type],
+                                data: params['file'][:tempfile].read
+
+    json OK, file.as(:url, host: request.host)
+  end
+
+  # Download file
+  get '/companies/:company_id/owners/:owner_id/attachment' do
+    file = owner.attachments_dataset.first
+    attachment "#{owner.name} - passport - #{file.name}"
+    file.data
   end
 
 end

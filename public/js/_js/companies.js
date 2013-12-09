@@ -6,17 +6,15 @@ CompaniesCtrl = function($scope, Api) {
     return $scope.companies = Api.companies.query();
   };
   $scope["delete"] = function(c) {
-    return c.$delete({
-      id: c.id
-    }, function() {
+    return c.$delete(function() {
       return $scope.loadData();
     });
   };
   return $scope.loadData();
 };
 
-CompanyCtrl = function($scope, Api, $routeParams) {
-  if ($routeParams.id === 'new') {
+CompanyCtrl = function($scope, Api, $routeParams, $location) {
+  if ($routeParams.company_id === 'new') {
     $scope.editing = true;
     $scope.isNew = true;
     $scope.company = new Api.companies();
@@ -30,10 +28,8 @@ CompanyCtrl = function($scope, Api, $routeParams) {
     return $scope.editing = !$scope.editing;
   };
   return $scope.save = function(c) {
-    return c.$save({
-      id: c.id
-    }, function() {
-      return $scope.editing = false;
+    return c.$save(function() {
+      return $location.path('/companies/' + c.id);
     });
   };
 };

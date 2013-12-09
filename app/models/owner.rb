@@ -1,5 +1,6 @@
 class Owner < Sequel::Model
   include Representation::Dataset
+  include DataVersioning
   extend UpdatableColumns
 
   # Plugins
@@ -14,6 +15,17 @@ class Owner < Sequel::Model
   def before_create
     super
     self.uuid = SecureRandom.uuid
+  end
+
+  def before_update
+    super
+    backup_version
+  end
+
+
+  def after_destroy
+    cleanup_versions
+    super
   end
 
 end

@@ -74,6 +74,7 @@ describe App do
       end
       after :all do
         Company.dataset.delete
+        DataVersion.dataset.delete
       end
 
       it 'should update name' do
@@ -180,6 +181,7 @@ describe App do
       after :all do
         Company.dataset.delete
         Owner.dataset.delete
+        DataVersion.dataset.delete
       end
 
       it 'should have OK status' do
@@ -211,6 +213,7 @@ describe App do
   end
 
   context 'Attachments' do
+
     context 'POST /companies/:company_id/owners/:owner_id/attachments' do
       before :all do
         c = create_company 'test'
@@ -233,6 +236,7 @@ describe App do
         expect(Attachment.first).not_to be_nil
       end
     end
+
   end
 
 end

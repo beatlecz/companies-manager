@@ -4,6 +4,7 @@ require 'sequel'
 require 'lib/representation'
 require 'lib/representation_dataset'
 require 'lib/updatable_columns'
+require 'lib/data_versioning'
 
 # General objects extensions
 require 'extensions/string'
@@ -57,6 +58,7 @@ class App < Sinatra::Base
   require 'representers/company_index_representer'
   require 'representers/company_detail_representer'
   require 'representers/owner_detail_representer'
+  require 'representers/attachment_url_representer'
 
   # Load helpers
   require 'helpers/json_respond'

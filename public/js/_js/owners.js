@@ -5,6 +5,10 @@ OwnersCtrl = function($scope, Api, $routeParams, $upload) {
   $scope.owner = new Api.owners({
     company_id: $routeParams.company_id
   });
+  $scope.editing = false;
+  $scope.editToggle = function() {
+    return $scope.editing = !$scope.editing;
+  };
   $scope.loadData = function() {
     return $scope.owners = Api.owners.query({
       company_id: $routeParams.company_id
@@ -21,14 +25,21 @@ OwnersCtrl = function($scope, Api, $routeParams, $upload) {
   $scope.save = function(o) {
     return o.$save(function() {
       $upload.upload({
-        url: '/companies/' + o.company_id + '/owners/' + o.id + '/attachments',
+        url: '/companies/' + o.company_id + '/owners/' + o.id + '/attachment',
         file: $scope.attachment
-      });
-      o = new Api.owners({
+      }).success((function(data) {
+        o.attachment_url = data;
+        $scope.attachment = null;
+        $scope.editing = false;
+        return $('#attachment').val('');
+      }));
+      $scope.owners.push(o);
+      return $scope.owner = new Api.owners({
         company_id: $routeParams.company_id
       });
-      return $scope.loadData();
     });
   };
-  return $scope.loadData();
+  if ($routeParams.company_id !== 'new') {
+    return $scope.loadData();
+  }
 };

@@ -101,28 +101,45 @@
   </div>
 </form>
 
-<form class="form-horizontal" role="form">
+<form ng-hide="isNew" class="form-horizontal" role="form" ng-controller="OwnersCtrl">
   <div class="form-group">
     <div class="col-sm-offset-1 col-sm-4">
       <h4>Owners</h4>
     </div>
   </div>
-  <div class="form-group" ng-controller="OwnersCtrl">
-    <label for="inputPhone" class="col-sm-1 control-label"> </label>
+  <div class="form-group" ng-show="owners.length > 0">
+    <label class="col-sm-1 control-label"> </label>
     <div class="col-sm-4">
       <table class="table table-condensed borderless">
         <tr ng-repeat="o in owners">
           <td>{{o.name}}</td>
-          <td style="text-align: right"><button class="btn btn-danger btn-xs" ng-click="delete(o)">Delete</button></td>
-        </tr>
-        <tr>
-          <td colspan="2"><input type="text" class="form-control" ng-model="owner.name" placeholder="Owner name" required></td>
-        </tr>
-        <tr>
-          <td><input type="file" ng-file-select="fileSelected($files)"></td>
-          <td><button type="submit" class="btn btn-success btn-sm" ng-click="save(owner)">Add owner</button></td>
+          <td style="text-align: right">
+            <a href="{{o.attachment_url}}" class="btn btn-default btn-xs">PDF</a>
+            <button class="btn btn-danger btn-xs" ng-click="delete(o)">Delete</button>
+          </td>
         </tr>
       </table>
+    </div>
+  </div>
+  <div class="form-group" ng-show="editing">
+    <label for="inputOwnerName" class="col-sm-1 control-label"> </label>
+    <div class="col-sm-4">
+      <table>
+        <tr>
+          <td colspan="2"><input id="inputOwnerName" type="text" class="form-control" ng-model="owner.name" placeholder="Owner name" required></td>
+        </tr>
+        <tr>
+          <td><input id="attachment" type="file" ng-file-select="fileSelected($files)"></td>
+          <td></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-1 col-sm-4">
+      <button formnovalidate class="btn btn-primary" ng-hide="editing" ng-click="editToggle()">Add owner</button>
+      <button class="btn btn-default" ng-show="editing" ng-click="editToggle()">Cancel</button>
+      <button type="submit" ng-show="editing" class="btn btn-success btn-sm" ng-click="save(owner)">Add owner</button>
     </div>
   </div>
 </form>

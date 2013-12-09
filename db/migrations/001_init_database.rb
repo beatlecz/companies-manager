@@ -37,7 +37,7 @@ Sequel.migration do
 
       String      :name
       String      :content_type
-      String      :size
+      Integer     :size
       File        :data,  null: false
 
       DateTime    :created_at,  null: false
