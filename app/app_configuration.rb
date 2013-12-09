@@ -3,6 +3,7 @@ require 'oj'
 require 'sequel'
 require 'lib/representation'
 require 'lib/representation_dataset'
+require 'lib/updatable_columns'
 
 # General objects extensions
 require 'extensions/string'
@@ -13,6 +14,14 @@ class App < Sinatra::Base
   configure do
     set :server,  :puma
     set :root,    './'
+
+    # overwrite Oj default options
+    Oj.default_options = {
+      :symbol_keys      => true,        # use symbol keys
+      :mode             => :compat,     # will check to see if the Object implements a to_hash() or to_json()
+      :time_format      => :xmlschema,  # serialize time in ISO8061 format
+      :second_precision => 0            # do not include milliseconds
+    }
   end
 
   configure :development do

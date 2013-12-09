@@ -1,0 +1,100 @@
+
+<form class="form-horizontal" role="form" ng-show="editing">
+  <div class="form-group">
+    <div class="col-sm-offset-1 col-sm-4">
+      <h3>{{ title }}</h3>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputName" class="col-sm-1 control-label">Name</label>
+    <div class="col-sm-4">
+      <input type="text" class="form-control" id="inputName" placeholder="Name" ng-model="company.name">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputAddress" class="col-sm-1 control-label">Address</label>
+    <div class="col-sm-4">
+      <input type="text" class="form-control" id="inputAddress" placeholder="Address" ng-model="company.address">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputCity" class="col-sm-1 control-label">City</label>
+    <div class="col-sm-4">
+      <input type="text" class="form-control" id="inputCity" placeholder="City" ng-model="company.city">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputCountry" class="col-sm-1 control-label">Country</label>
+    <div class="col-sm-4">
+      <input type="text" class="form-control" id="inputCountry" placeholder="Country" ng-model="company.country">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputEmail" class="col-sm-1 control-label">Email</label>
+    <div class="col-sm-4">
+      <input type="email" class="form-control" id="inputEmail" placeholder="Email" ng-model="company.email">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputPhone" class="col-sm-1 control-label">Phone</label>
+    <div class="col-sm-4">
+      <input type="tel" class="form-control" id="inputPhone" placeholder="Phone" ng-model="company.phone">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-1 col-sm-4">
+      <button type="submit" class="btn btn-default" ng-click="save(company)">Save</button>
+      <button class="btn btn-default" ng-click="editToggle()">Cancel</button>
+    </div>
+  </div>
+</form>
+
+
+<form class="form-horizontal" role="form" ng-hide="editing">
+  <div class="form-group">
+    <div class="col-sm-offset-1 col-sm-4">
+      <h3>{{ title }}</h3>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputName" class="col-sm-1 control-label">Name</label>
+    <div class="col-sm-4">
+      <p class="form-control-static">{{ company.name }}</p>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputAddress" class="col-sm-1 control-label">Address</label>
+    <div class="col-sm-4">
+      <p class="form-control-static">{{ company.address }}</p>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputCity" class="col-sm-1 control-label">City</label>
+    <div class="col-sm-4">
+      <p class="form-control-static">{{ company.city }}</p>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputCountry" class="col-sm-1 control-label">Country</label>
+    <div class="col-sm-4">
+      <p class="form-control-static">{{ company.country }}</p>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputEmail" class="col-sm-1 control-label">Email</label>
+    <div class="col-sm-4">
+      <p class="form-control-static">{{ company.email }}</p>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputPhone" class="col-sm-1 control-label">Phone</label>
+    <div class="col-sm-4">
+      <p class="form-control-static">{{ company.phone }}</p>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-1 col-sm-4">
+      <button class="btn btn-default" ng-click="editToggle()">Edit</button>
+    </div>
+  </div>
+</form>

@@ -8,12 +8,16 @@ class App < Sinatra::Base
     erb :app
   end
 
+  ###########
+  # Companies
+  ###########
+
   get '/companies' do
     json OK, Company.as(:index)
   end
 
   post '/companies' do
-    company = Company.create params.slice(*Company.columns)
+    company = Company.create params.slice(*Company.updatable_columns)
 
     json OK, company.as(:detail)
   end
@@ -23,7 +27,7 @@ class App < Sinatra::Base
   end
 
   post '/companies/:company_id' do
-    company.update params.slice(*Company.columns)
+    company.update params.slice(*Company.updatable_columns)
 
     json OK, company.as(:detail)
   end
@@ -33,5 +37,11 @@ class App < Sinatra::Base
 
     no_content
   end
+
+  ########
+  # Owners
+  ########
+
+  # TODO implement owners endpoints
 
 end

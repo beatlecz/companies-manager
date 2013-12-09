@@ -7,9 +7,9 @@ app = angular.module('app', [
 
 app.config([
   '$routeProvider', ($routeProvider) ->
-    $routeProvider.when('/',  templateUrl: 'home.html')
-    .when('/companies',       templateUrl: 'company_index.html', controller: CompaniesCtrl)
-    .when('/companies/:id',   templateUrl: 'company_detail.html', controller: CompanyCtrl)
+    $routeProvider.when('/',  templateUrl: 'js/templates/home.html')
+    .when('/companies',       templateUrl: 'js/templates/companies_index.html', controller: CompaniesCtrl)
+    .when('/companies/:id',   templateUrl: 'js/templates/companies_detail.html', controller: CompanyCtrl)
     .otherwise(redirectTo: '/')
 ])
 

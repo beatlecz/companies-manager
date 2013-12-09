@@ -7,12 +7,12 @@ app = angular.module('app', ['ngResource', 'ngRoute']);
 app.config([
   '$routeProvider', function($routeProvider) {
     return $routeProvider.when('/', {
-      templateUrl: 'home.html'
+      templateUrl: 'js/templates/home.html'
     }).when('/companies', {
-      templateUrl: 'company_index.html',
+      templateUrl: 'js/templates/companies_index.html',
       controller: CompaniesCtrl
     }).when('/companies/:id', {
-      templateUrl: 'company_detail.html',
+      templateUrl: 'js/templates/companies_detail.html',
       controller: CompanyCtrl
     }).otherwise({
       redirectTo: '/'

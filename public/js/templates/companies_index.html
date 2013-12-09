@@ -1,0 +1,16 @@
+<div class="clearfix">
+  <h3 class="pull-left">Companies</h3>
+  <h3 class="pull-right"><a href="/#/companies/new" class="btn btn-primary">Add new company</a></h3>
+</div>
+<table class="table">
+  <tr>
+    <th style="width: 20px">ID</th>
+    <th>Name</th>
+    <th style="width: 100px"></th>
+  </tr>
+  <tr ng-repeat="c in companies">
+    <td><a href="/#/companies/{{ c.id }}">{{ c.id }}</a></td>
+    <td>{{ c.name }}</td>
+    <td></td>
+  </tr>
+</table>
