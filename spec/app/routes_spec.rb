@@ -214,13 +214,13 @@ describe App do
 
   context 'Attachments' do
 
-    context 'POST /companies/:company_id/owners/:owner_id/attachments' do
+    context 'POST /companies/:company_id/owners/:owner_id/attachment' do
       before :all do
         c = create_company 'test'
         o = c.add_owner name: 'test1'
         file = Rack::Test::UploadedFile.new 'spec/tmp/testing_file.txt'
 
-        post "/companies/#{c.id}/owners/#{o.id}/attachments", { file: file }
+        post "/companies/#{c.id}/owners/#{o.id}/attachment", { file: file }
       end
       after :all do
         Company.dataset.delete
