@@ -19,7 +19,6 @@ class App < Sinatra::Base
   end
 
   post '/companies' do
-    ap request.env
     company = Company.create params.slice(*Company.updatable_columns)
 
     json OK, company.as(:detail)
