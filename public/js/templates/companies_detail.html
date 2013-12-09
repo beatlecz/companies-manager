@@ -43,6 +43,17 @@
     </div>
   </div>
   <div class="form-group">
+    <label for="inputPhone" class="col-sm-1 control-label">Owners</label>
+    <div class="col-sm-4">
+      <table class="table">
+        <tr ng-repeat="o in owners">
+          <td>{{o.name}}</td>
+          <td style="text-align: right"><button class="btn btn-danger btn-xs">Delete</button></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="form-group">
     <div class="col-sm-offset-1 col-sm-4">
       <button type="submit" class="btn btn-success" ng-click="save(company)">Save</button>
       <button class="btn btn-default" ng-click="editToggle()">Cancel</button>
@@ -90,6 +101,14 @@
     <label for="inputPhone" class="col-sm-1 control-label">Phone</label>
     <div class="col-sm-4">
       <p class="form-control-static">{{ company.phone }}</p>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputPhone" class="col-sm-1 control-label">Owners</label>
+    <div class="col-sm-4">
+      <ul class="form-control-static list-unstyled">
+        <li ng-repeat="o in owners">{{o.name}}</li>
+      </ul>
     </div>
   </div>
   <div class="form-group">

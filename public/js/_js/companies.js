@@ -25,8 +25,11 @@ CompanyCtrl = function($scope, Api, $routeParams, $log) {
     $scope.editing = false;
     $scope.company = Api.companies.get({
       id: $routeParams.id
+    }, function() {
+      return $scope.owners = Api.owners.query({
+        company_id: $scope.company.id
+      });
     });
-    $log.info($scope.company);
   }
   $scope.editToggle = function() {
     return $scope.editing = !$scope.editing;

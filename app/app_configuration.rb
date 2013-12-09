@@ -56,6 +56,7 @@ class App < Sinatra::Base
   # Load representers
   require 'representers/company_index_representer'
   require 'representers/company_detail_representer'
+  require 'representers/owner_detail_representer'
 
   # Load helpers
   require 'helpers/json_respond'

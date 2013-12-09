@@ -15,8 +15,8 @@ CompanyCtrl = ($scope, Api, $routeParams,$log) ->
     $scope.company = new Api.companies()
   else
     $scope.editing = false
-    $scope.company = Api.companies.get(id: $routeParams.id)
-    $log.info $scope.company
+    $scope.company = Api.companies.get id: $routeParams.id, ->
+      $scope.owners = Api.owners.query company_id: $scope.company.id
 
   $scope.editToggle = ->
     $scope.editing = !$scope.editing

@@ -42,6 +42,8 @@ class App < Sinatra::Base
   # Owners
   ########
 
-  # TODO implement owners endpoints
+  get '/companies/:company_id/owners' do
+    json OK, company.owners_dataset.as(:detail)
+  end
 
 end

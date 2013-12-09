@@ -24,6 +24,14 @@ api = function($resource) {
   return {
     companies: $resource('/companies/:id', {
       id: '@id'
+    }),
+    owners: $resource('/companies/:company_id/owners/:id', {
+      id: '@id',
+      company_id: '@company_id'
+    }),
+    directors: $resource('/companies/:company_id/directors/:id', {
+      id: '@id',
+      company_id: '@company_id'
     })
   };
 };

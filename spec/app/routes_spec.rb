@@ -6,7 +6,7 @@ describe App do
 
   let(:last_data) { Oj.load last_response.body }
 
-  context 'Companies' do
+  context 'Companies', :companies do
 
     context 'GET /companies' do
       before :all do
@@ -95,6 +95,48 @@ describe App do
       it 'should delete' do
         expect(Company.count).to eql 0
       end
+    end
+
+  end
+
+  context 'Owners', :owners do
+
+    context 'GET /companies/:company_id/owners' do
+      before :all do
+        c = create_company 'test'
+        c.add_owner name: 'test1'
+        c.add_owner name: 'test2'
+
+        get "/companies/#{c.id}/owners"
+      end
+      after :all do
+        Company.dataset.delete
+        Owner.dataset.delete
+      end
+
+      it 'should have OK status' do
+        expect(last_response.status).to eql 200
+      end
+
+      it 'should return 2 owners' do
+        expect(last_data.count).to eql 2
+      end
+    end
+
+    context 'POST /companies/:company_id/owners' do
+
+    end
+
+    context 'GET /companies/:company_id/owners/:owner_id' do
+
+    end
+
+    context 'POST /companies/:company_id/owners/:owner_id' do
+
+    end
+
+    context 'DELETE /companies/:company_id/owners/:owner_id' do
+
     end
 
   end

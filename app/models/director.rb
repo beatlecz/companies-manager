@@ -9,4 +9,9 @@ class Director < Sequel::Model
   # Associations
   many_to_one :company
 
+  def before_create
+    super
+    self.uuid = SecureRandom.uuid
+  end
+
 end
