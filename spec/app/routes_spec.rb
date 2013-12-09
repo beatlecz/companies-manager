@@ -124,19 +124,88 @@ describe App do
     end
 
     context 'POST /companies/:company_id/owners' do
+      before :all do
+        c = create_company 'test'
+        body = {
+          :name => 'Test Owner'
+        }
+        post "/companies/#{c.id}/owners", Oj.dump(body), post_env
+      end
+      after :all do
+        Company.dataset.delete
+        Owner.dataset.delete
+      end
 
+      it 'should have OK status' do
+        expect(last_response.status).to eql 200
+      end
+
+      it 'should have one new owner' do
+        expect(Owner.first.name).to eql 'Test Owner'
+      end
     end
 
     context 'GET /companies/:company_id/owners/:owner_id' do
+      before :all do
+        c = create_company 'test'
+        o = c.add_owner name: 'test1'
 
+        get "/companies/#{c.id}/owners/#{o.id}"
+      end
+      after :all do
+        Company.dataset.delete
+        Owner.dataset.delete
+      end
+
+      it 'should have OK status' do
+        expect(last_response.status).to eql 200
+      end
+
+      it 'should return correct owner' do
+        expect(last_data[:name]).to eql 'test1'
+      end
     end
 
     context 'POST /companies/:company_id/owners/:owner_id' do
+      before :all do
+        c = create_company 'test'
+        o = c.add_owner name: 'test1'
 
+        body = {
+          :name => 'test_updated'
+        }
+
+        post "/companies/#{c.id}/owners/#{o.id}", Oj.dump(body), post_env
+      end
+      after :all do
+        Company.dataset.delete
+        Owner.dataset.delete
+      end
+
+      it 'should have OK status' do
+        expect(last_response.status).to eql 200
+      end
+
+      it 'should return correct owner' do
+        expect(last_data[:name]).to eql 'test_updated'
+      end
     end
 
     context 'DELETE /companies/:company_id/owners/:owner_id' do
+      before :all do
+        c = create_company 'test'
+        o = c.add_owner name: 'test1'
 
+        delete "/companies/#{c.id}/owners/#{o.id}", {}, post_env
+      end
+      after :all do
+        Company.dataset.delete
+        Owner.dataset.delete
+      end
+
+      it 'should delete' do
+        expect(last_response.status).to eql 204
+      end
     end
 
   end

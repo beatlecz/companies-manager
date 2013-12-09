@@ -9,25 +9,25 @@
   <div class="form-group">
     <label for="inputName" class="col-sm-1 control-label">Name</label>
     <div class="col-sm-4">
-      <input type="text" class="form-control" id="inputName" placeholder="Name" ng-model="company.name">
+      <input type="text" class="form-control" id="inputName" placeholder="Name" ng-model="company.name" required>
     </div>
   </div>
   <div class="form-group">
     <label for="inputAddress" class="col-sm-1 control-label">Address</label>
     <div class="col-sm-4">
-      <input type="text" class="form-control" id="inputAddress" placeholder="Address" ng-model="company.address">
+      <input type="text" class="form-control" id="inputAddress" placeholder="Address" ng-model="company.address" required>
     </div>
   </div>
   <div class="form-group">
     <label for="inputCity" class="col-sm-1 control-label">City</label>
     <div class="col-sm-4">
-      <input type="text" class="form-control" id="inputCity" placeholder="City" ng-model="company.city">
+      <input type="text" class="form-control" id="inputCity" placeholder="City" ng-model="company.city" required>
     </div>
   </div>
   <div class="form-group">
     <label for="inputCountry" class="col-sm-1 control-label">Country</label>
     <div class="col-sm-4">
-      <input type="text" class="form-control" id="inputCountry" placeholder="Country" ng-model="company.country">
+      <input type="text" class="form-control" id="inputCountry" placeholder="Country" ng-model="company.country" required>
     </div>
   </div>
   <div class="form-group">
@@ -39,7 +39,7 @@
   <div class="form-group">
     <label for="inputPhone" class="col-sm-1 control-label">Phone</label>
     <div class="col-sm-4">
-      <input type="tel" class="form-control" id="inputPhone" placeholder="Phone" ng-model="company.phone">
+      <input type="tel" class="form-control" id="inputPhone" placeholder="Phone" ng-model="company.phone" required>
     </div>
   </div>
   <div class="form-group">
@@ -56,7 +56,8 @@
   <div class="form-group">
     <div class="col-sm-offset-1 col-sm-4">
       <button type="submit" class="btn btn-success" ng-click="save(company)">Save</button>
-      <button class="btn btn-default" ng-click="editToggle()">Cancel</button>
+      <button ng-hide="isNew" class="btn btn-default" ng-click="editToggle()">Cancel</button>
+      <a href="/#/companies" ng-show="isNew" class="btn btn-default">Cancel</a>
     </div>
   </div>
 </form>
