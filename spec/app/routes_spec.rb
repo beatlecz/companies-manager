@@ -210,4 +210,29 @@ describe App do
 
   end
 
+  context 'Attachments' do
+    context 'POST /companies/:company_id/owners/:owner_id/attachments' do
+      before :all do
+        c = create_company 'test'
+        o = c.add_owner name: 'test1'
+        file = Rack::Test::UploadedFile.new 'spec/tmp/testing_file.txt'
+
+        post "/companies/#{c.id}/owners/#{o.id}/attachments", { file: file }
+      end
+      after :all do
+        Company.dataset.delete
+        Owner.dataset.delete
+        Attachment.dataset.delete
+      end
+
+      it 'should has OK status' do
+        expect(last_response.status).to eql 200
+      end
+
+      it 'should has new attachment uploaded' do
+        expect(Attachment.first).not_to be_nil
+      end
+    end
+  end
+
 end

@@ -1,22 +1,21 @@
 CompaniesCtrl = ($scope, Api) ->
 
-  loadData = ->
+  $scope.loadData = ->
     $scope.companies = Api.companies.query()
   $scope.delete = (c) ->
     c.$delete id: c.id, ->
-      loadData()
+      $scope.loadData()
 
-  loadData()
+  $scope.loadData()
 
-CompanyCtrl = ($scope, Api, $routeParams,$log) ->
+CompanyCtrl = ($scope, Api, $routeParams) ->
   if $routeParams.id == 'new'
     $scope.editing = true
     $scope.isNew = true
     $scope.company = new Api.companies()
   else
     $scope.editing = false
-    $scope.company = Api.companies.get id: $routeParams.id, ->
-      $scope.owners = Api.owners.query company_id: $scope.company.id
+    $scope.company = Api.companies.get company_id: $routeParams.company_id
 
   $scope.editToggle = ->
     $scope.editing = !$scope.editing

@@ -4,9 +4,11 @@ require 'sinatra/base'
 
 class App < Sinatra::Base
 
+  # Init point for JS client app
   get '/' do
     erb :app
   end
+
 
   ###########
   # Companies
@@ -38,6 +40,7 @@ class App < Sinatra::Base
     no_content
   end
 
+
   ########
   # Owners
   ########
@@ -66,6 +69,20 @@ class App < Sinatra::Base
     owner.destroy
 
     no_content
+  end
+
+
+  #############
+  # Attachments
+  #############
+
+  post '/companies/:company_id/owners/:owner_id/attachments' do
+    owner.add_attachment name: params['file'][:filename],
+                         size: params['file'][:tempfile].size,
+                         content_type: params['file'][:type],
+                         data: params['file'][:tempfile].read
+    ap Attachment.first
+    json OK
   end
 
 end

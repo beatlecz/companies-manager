@@ -43,17 +43,6 @@
     </div>
   </div>
   <div class="form-group">
-    <label for="inputPhone" class="col-sm-1 control-label">Owners</label>
-    <div class="col-sm-4">
-      <table class="table">
-        <tr ng-repeat="o in owners">
-          <td>{{o.name}}</td>
-          <td style="text-align: right"><button class="btn btn-danger btn-xs">Delete</button></td>
-        </tr>
-      </table>
-    </div>
-  </div>
-  <div class="form-group">
     <div class="col-sm-offset-1 col-sm-4">
       <button type="submit" class="btn btn-success" ng-click="save(company)">Save</button>
       <button ng-hide="isNew" class="btn btn-default" ng-click="editToggle()">Cancel</button>
@@ -105,17 +94,35 @@
     </div>
   </div>
   <div class="form-group">
-    <label for="inputPhone" class="col-sm-1 control-label">Owners</label>
-    <div class="col-sm-4">
-      <ul class="form-control-static list-unstyled">
-        <li ng-repeat="o in owners">{{o.name}}</li>
-      </ul>
-    </div>
-  </div>
-  <div class="form-group">
     <div class="col-sm-offset-1 col-sm-4">
       <a href="/#/companies" class="btn btn-default">Back</a>
       <button class="btn btn-primary" ng-click="editToggle()">Edit</button>
+    </div>
+  </div>
+</form>
+
+<form class="form-horizontal" role="form">
+  <div class="form-group">
+    <div class="col-sm-offset-1 col-sm-4">
+      <h4>Owners</h4>
+    </div>
+  </div>
+  <div class="form-group" ng-controller="OwnersCtrl">
+    <label for="inputPhone" class="col-sm-1 control-label"> </label>
+    <div class="col-sm-4">
+      <table class="table table-condensed borderless">
+        <tr ng-repeat="o in owners">
+          <td>{{o.name}}</td>
+          <td style="text-align: right"><button class="btn btn-danger btn-xs" ng-click="delete(o)">Delete</button></td>
+        </tr>
+        <tr>
+          <td colspan="2"><input type="text" class="form-control" ng-model="owner.name" placeholder="Owner name" required></td>
+        </tr>
+        <tr>
+          <td><input type="file" ng-file-select="fileSelected($files)"></td>
+          <td><button type="submit" class="btn btn-success btn-sm" ng-click="save(owner)">Add owner</button></td>
+        </tr>
+      </table>
     </div>
   </div>
 </form>

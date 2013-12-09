@@ -2,21 +2,20 @@
 var CompaniesCtrl, CompanyCtrl;
 
 CompaniesCtrl = function($scope, Api) {
-  var loadData;
-  loadData = function() {
+  $scope.loadData = function() {
     return $scope.companies = Api.companies.query();
   };
   $scope["delete"] = function(c) {
     return c.$delete({
       id: c.id
     }, function() {
-      return loadData();
+      return $scope.loadData();
     });
   };
-  return loadData();
+  return $scope.loadData();
 };
 
-CompanyCtrl = function($scope, Api, $routeParams, $log) {
+CompanyCtrl = function($scope, Api, $routeParams) {
   if ($routeParams.id === 'new') {
     $scope.editing = true;
     $scope.isNew = true;
@@ -24,11 +23,7 @@ CompanyCtrl = function($scope, Api, $routeParams, $log) {
   } else {
     $scope.editing = false;
     $scope.company = Api.companies.get({
-      id: $routeParams.id
-    }, function() {
-      return $scope.owners = Api.owners.query({
-        company_id: $scope.company.id
-      });
+      company_id: $routeParams.company_id
     });
   }
   $scope.editToggle = function() {

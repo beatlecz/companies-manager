@@ -2,7 +2,7 @@
 'use strict';
 var api, app;
 
-app = angular.module('app', ['ngResource', 'ngRoute']);
+app = angular.module('app', ['ngResource', 'ngRoute', 'angularFileUpload']);
 
 app.config([
   '$routeProvider', function($routeProvider) {
@@ -11,7 +11,7 @@ app.config([
     }).when('/companies', {
       templateUrl: 'js/templates/companies_index.html',
       controller: CompaniesCtrl
-    }).when('/companies/:id', {
+    }).when('/companies/:company_id', {
       templateUrl: 'js/templates/companies_detail.html',
       controller: CompanyCtrl
     }).otherwise({
@@ -22,15 +22,19 @@ app.config([
 
 api = function($resource) {
   return {
-    companies: $resource('/companies/:id', {
-      id: '@id'
+    companies: $resource('/companies/:company_id', {
+      company_id: '@id'
     }),
-    owners: $resource('/companies/:company_id/owners/:id', {
-      id: '@id',
+    owners: $resource('/companies/:company_id/owners/:owner_id', {
+      owner_id: '@id',
       company_id: '@company_id'
     }),
-    directors: $resource('/companies/:company_id/directors/:id', {
-      id: '@id',
+    directors: $resource('/companies/:company_id/directors/:owner_id', {
+      owner_id: '@id',
+      company_id: '@company_id'
+    }),
+    attachments: $resource('/companies/:company_id/directors/:owner_id/attachments', {
+      owner_id: '@id',
       company_id: '@company_id'
     })
   };
